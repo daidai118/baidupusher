@@ -1,5 +1,5 @@
 {
-    "name": "baidupusher/yii2-baidupusher",
+    "name": "daidai118/yii2-baidupusher",
     "description": "百度推送yii2封装 只是抽出config而已",
     "type": "yii2-extension",
     "keywords": ["yii2","extension"],
