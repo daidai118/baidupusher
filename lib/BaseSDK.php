@@ -17,12 +17,6 @@ namespace  daidai118\baidupusher\lib;
 
 use yii\base\Object;
 
-require_once(PUSH_SDK_HOME.'/configure.php');
-
-require_once(PUSH_SDK_HOME.'/lib/HttpRequest.php');
-require_once(PUSH_SDK_HOME.'/lib/PushException.php');
-require_once(PUSH_SDK_HOME.'/lib/PushSimpleLog.php');
-require_once PUSH_SDK_HOME . '/lib/AssertHelper.php';
 
 /**
  * 仅提供最基本的错误控制和初始化参数功能
