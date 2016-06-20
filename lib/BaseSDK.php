@@ -1,4 +1,5 @@
 <?php
+namespace  baidupuser\lib;
 /***************************************************************************
  * 
  * Copyright (c) 2014 Baidu.com, Inc. All Rights Reserved

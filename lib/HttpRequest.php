@@ -1,4 +1,5 @@
 <?php
+namespace  baidupuser\lib;
 /**
  * *************************************************************************
  *
@@ -18,8 +19,6 @@
  *        
  */
 
-require_once(PUSH_SDK_HOME.'/lib/PushSimpleLog.php');
-require_once(PUSH_SDK_HOME.'/lib/PushException.php');
 
 class HttpRequest {
     const HTTP_GET = 'GET';

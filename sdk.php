@@ -1,4 +1,5 @@
 <?php
+namespace baidupuser;
 /**
  * *************************************************************************
  *
@@ -14,17 +15,6 @@
  * 
  *        
  */
-
-
-if(!defined('PUSH_SDK_HOME')){
-    define('PUSH_SDK_HOME', dirname(__FILE__));
-}
-
-//echo PUSH_SDK_HOME;
-
-require_once PUSH_SDK_HOME . '/configure.php';
-require_once PUSH_SDK_HOME . '/lib/BaseSDK.php';
-require_once PUSH_SDK_HOME . '/lib/AssertHelper.php';
 
 /**
  *
