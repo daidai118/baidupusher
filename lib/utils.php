@@ -1,5 +1,5 @@
 <?php
-namespace  baidupuser\lib;
+namespace  daidai118\baidupuser\lib;
 /**
  * *************************************************************************
  *

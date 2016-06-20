@@ -1,5 +1,5 @@
 <?php
-namespace  baidupuser\lib;
+namespace  daidai118\baidupuser\lib;
 /***************************************************************************
  * 
  * Copyright (c) 2014 Baidu.com, Inc. All Rights Reserved
