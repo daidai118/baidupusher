@@ -15,6 +15,7 @@ namespace daidai118\baidupusher;
  * 
  *        
  */
+use daidai118\baidupusher\lib\BaseSDK;
 
 /**
  *
@@ -363,8 +364,8 @@ class PushSDK extends BaseSDK {
             $loss = $apiKey == null ? 'apikey' : 'secretKey';
             throw new Exception("need $loss.");
         }else{
-            $this -> setApiKey(BAIDU_PUSH_CONFIG::default_apiKey);
-            $this -> setSecretKey(BAIDU_PUSH_CONFIG::default_secretkey);
+            $this -> setApiKey($this->config['default_apiKey']);
+            $this -> setSecretKey($this->config['default_secretkey']);
         }
         
         parent::__construct($curlopts);
@@ -473,8 +474,7 @@ class PushSDK extends BaseSDK {
         } else {
             $this -> onError(null, 2, "SDK running error, Missing the prepositive method [$before];");
         }
-        
-        return false;
+        return parent::__call($name, $originArgs);
     }
     
     /**

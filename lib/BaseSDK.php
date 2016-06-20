@@ -31,6 +31,7 @@ class BaseSDK extends Object{
      * @var string
      */
     const CURRENT_VERSION = '3.0.0';
+    public $config = [];
     
     /*
      * 定义异常类型
@@ -421,36 +422,36 @@ class BaseSDK extends Object{
      */
     function __construct($curlOpts = array()) {
         date_default_timezone_set('Asia/Shanghai');
-        self::$suppressException = BAIDU_PUSH_CONFIG::SUPPRESS_EXCPTION;
-        $this -> log = new PushSimpleLog(BAIDU_PUSH_CONFIG::LOG_OUTPUT, BAIDU_PUSH_CONFIG::LOG_LEVEL);
-        
+        self::$suppressException = $this->config['SUPPRESS_EXCPTION'];
+        $this -> log = new PushSimpleLog($this->config['LOG_OUTPUT'], $this->config['LOG_LEVEL']);
+
         try {
-            
-            $this -> http = new HttpRequest(BAIDU_PUSH_CONFIG::HOST, $curlOpts, $this -> log);
+
+            $this -> http = new HttpRequest($this->config['HOST'], $curlOpts, $this -> log);
             $this -> log -> log("HttpRequest: ready to work...");
-        
+
         } catch ( Exception $e ) {
             $this -> log -> fault($e -> __toString());
             die();
         }
-        
+
         $this -> assert = new AssertHelper();
-        
-        $this -> signExpires = intval(BAIDU_PUSH_CONFIG::SIGN_EXPIRES);
-        
+
+        $this -> signExpires = intval($this->config['SIGN_EXPIRES']);
+
         $this -> log -> log("SDK: initializing...");
     }
-    
+
     /**
      * 判断一个字符串是否为以http://开头
      *
-     * @param string $url        
+     * @param string $url
      * @return boolean
      */
     public function isUrlFormat($url) {
         return $this -> http -> isUrlFormat($url);
     }
-    
+
     /**
      * 判断一个字符串,是否符合给写的格式
      *
@@ -463,10 +464,10 @@ class BaseSDK extends Object{
     function isMatchReg($match, $str) {
         return $this -> http -> isMatchReg($match, $str);
     }
-    
+
     /**
      * 计算请求迁名
-     * 
+     *
      * @param string $method
      *        GET|POST
      * @param string $url
@@ -476,29 +477,29 @@ class BaseSDK extends Object{
      * @return string
      */
     function genSign($method, $url, $arrContent) {
-        
+
         if ($this -> isMatchReg('/(^get$)|(^post$)/i', $method) === 0) {
             $this -> onError(null, 3, 'SDK: params invalid, $method must be "GET" or "POST"');
             return null;
         }
-        
+
         if (! $this -> isUrlFormat($url)) {
             $this -> onError(null, 3, 'SDK: params invalid, $url is invalid!');
             return null;
         }
-        
+
         $secret_key = $this -> secretKey;
-        
+
         $baseStr = strtoupper($method) . $url;
-        
+
         ksort($arrContent);
-        
+
         foreach ( $arrContent as $key => $value ) {
             $baseStr .= $key . '=' . $value;
         }
-        
+
         $sign = md5(urlencode($baseStr . $secret_key));
-        
+
         return $sign;
     }
     /**
@@ -511,9 +512,9 @@ class BaseSDK extends Object{
             'apikey' => $this -> apikey,
             'timestamp' => time(),
         );
-        
-        if ($this -> deviceType === null && BAIDU_PUSH_CONFIG::default_devicetype !== null) {
-            $this->setDeviceType(BAIDU_PUSH_CONFIG::default_devicetype);
+
+        if ($this -> deviceType === null && $this->config['default_devicetype'] !== null) {
+            $this->setDeviceType($this->config['default_devicetype']);
         }
         
         if($this -> deviceType !== null ){
