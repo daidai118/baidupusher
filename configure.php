@@ -1,5 +1,5 @@
 <?php
-namespace  daidai118\baidupuser;
+namespace  daidai118\baidupusher;
 /**
  * *************************************************************************
  *

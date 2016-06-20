@@ -1,5 +1,5 @@
 <?php
-namespace  daidai118\baidupuser\lib;
+namespace  daidai118\baidupusher\lib;
 /***************************************************************************
  * 
  * Copyright (c) 2014 Baidu.com, Inc. All Rights Reserved
@@ -15,6 +15,8 @@ namespace  daidai118\baidupuser\lib;
  *
  */
 
+use yii\base\Object;
+
 require_once(PUSH_SDK_HOME.'/configure.php');
 
 require_once(PUSH_SDK_HOME.'/lib/HttpRequest.php');
@@ -28,7 +30,7 @@ require_once PUSH_SDK_HOME . '/lib/AssertHelper.php';
  * 
  *
  */
-class BaseSDK{
+class BaseSDK extends Object{
     /**
      * 版本标识;
      * 

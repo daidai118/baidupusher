@@ -16,7 +16,7 @@
  *        
  */
 
-require_once '../sdk.php';
+require_once '../PushSDK.php';
 
 // 创建SDK对象.
 $sdk = new PushSDK();

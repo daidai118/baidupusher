@@ -18,7 +18,7 @@ if(!defined('PUSH_SDK_HOME')){
 }
 
 require_once PUSH_SDK_HOME . '/configure.php';
-require_once PUSH_SDK_HOME . '/sdk.php';
+require_once PUSH_SDK_HOME . '/PushSDK.php';
 
 // check environment&config
 class CheckEnviromentTest extends PHPUnit_Framework_TestCase{
